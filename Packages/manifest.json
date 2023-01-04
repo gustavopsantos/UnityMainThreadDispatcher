@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.madsbangh.easybuttons": "https://github.com/madsbangh/EasyButtons.git#upm",
     "com.unity.ide.rider": "3.0.15"
   }
 }
