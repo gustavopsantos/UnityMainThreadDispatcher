@@ -1,18 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.LowLevel;
+using UnityEngine.PlayerLoop;
 
-public class UnityMainThreadDispatcher : MonoBehaviour
+public class UnityMainThreadDispatcher
 {
-    // Start is called before the first frame update
-    void Start()
+    private static int Tick;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void Initialize()
     {
-        
+        Subscribe();
+        Application.quitting += Unsubscribe;
     }
 
-    // Update is called once per frame
-    void Update()
+    private static void Subscribe()
     {
+        var loop = PlayerLoop.GetCurrentPlayerLoop();
+        ref var updateSystem = ref loop.Find<Update>();
+        updateSystem.updateDelegate += Update;
+        PlayerLoop.SetPlayerLoop(loop);
+    }
+
+    private static void Unsubscribe()
+    {
+        var loop = PlayerLoop.GetCurrentPlayerLoop();
+        ref var updateSystem = ref loop.Find<Update>();
+        updateSystem.updateDelegate -= Update;
+        PlayerLoop.SetPlayerLoop(loop);
+    }
+    
+    private static void Update()
+    {
+        Tick++;
+        Debug.Log($"Ticking {Tick} {Time.frameCount}");
         
+        if (Tick != Time.frameCount)
+        {
+            Debug.LogError("Something went wrong");
+        }
     }
 }
