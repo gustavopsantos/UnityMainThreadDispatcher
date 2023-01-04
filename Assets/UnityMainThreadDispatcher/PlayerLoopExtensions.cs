@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.LowLevel;
 
-public static class PlayerLoopExtensions
+internal static class PlayerLoopExtensions
 {
     public static ref PlayerLoopSystem Find<T>(this PlayerLoopSystem parentSystem)
     {

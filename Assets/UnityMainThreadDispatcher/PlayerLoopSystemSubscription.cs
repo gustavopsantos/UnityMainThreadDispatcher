@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.LowLevel;
 
-public class PlayerLoopSystemSubscription<T> : IDisposable
+internal class PlayerLoopSystemSubscription<T> : IDisposable
 {
     private readonly Action _callback;
 
