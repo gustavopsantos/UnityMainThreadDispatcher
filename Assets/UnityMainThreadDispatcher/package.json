@@ -1,0 +1,12 @@
+{
+  "name": "com.gustavopsantos.unitymainthreaddispatcher",
+  "displayName": "Unity Main Thread Dispatcher",
+  "version": "1.0.0",
+  "unity": "2018.1",
+  "description": "Provides a simple, non MonoBehaviour service for managing the queue of work items on unity main thread",
+  "keywords": ["Thread", "Main Thread Dispatcher", "Low Level Player Loop System", "Non MonoBehaviour"],
+  "license": "MIT",
+  "documentationUrl": "https://github.com/gustavopsantos/unitymainthreaddispatcher",
+  "changelogUrl": "https://github.com/gustavopsantos/unitymainthreaddispatcher/releases",
+  "licensesUrl": "https://github.com/gustavopsantos/unitymainthreaddispatcher/blob/main/LICENSE"
+}
