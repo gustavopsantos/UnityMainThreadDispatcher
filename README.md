@@ -14,3 +14,9 @@
 2. Import UnityMainThreadDispatcher.X.X.X.unitypackage
 
 > After downloading or installing by package manager, thats it, since we rely on low level player loop system, theres no need for creating a gameobject in order to hook MonoBehaviour update method
+
+## Usage
+
+```csharp
+UnityMainThreadDispatcher.Dispatcher.Enqueue(() => Debug.Log("This is happening on unity main thread"));
+```
