@@ -1,39 +1,42 @@
 ﻿using System;
 using UnityEngine.LowLevel;
 
-internal class PlayerLoopSystemSubscription<T> : IDisposable
+namespace UnityMainThreadDispatcher
 {
-    private readonly Action _callback;
-
-    public PlayerLoopSystemSubscription(Action callback)
+    internal class PlayerLoopSystemSubscription<T> : IDisposable
     {
-        _callback = callback;
-        Subscribe();
-    }
+        private readonly Action _callback;
 
-    private void Invoke()
-    {
-        _callback.Invoke();
-    }
+        public PlayerLoopSystemSubscription(Action callback)
+        {
+            _callback = callback;
+            Subscribe();
+        }
 
-    private void Subscribe()
-    {
-        var loop = PlayerLoop.GetCurrentPlayerLoop();
-        ref var system = ref loop.Find<T>();
-        system.updateDelegate += Invoke;
-        PlayerLoop.SetPlayerLoop(loop);
-    }
+        private void Invoke()
+        {
+            _callback.Invoke();
+        }
 
-    private void Unsubscribe()
-    {
-        var loop = PlayerLoop.GetCurrentPlayerLoop();
-        ref var system = ref loop.Find<T>();
-        system.updateDelegate -= Invoke;
-        PlayerLoop.SetPlayerLoop(loop);
-    }
+        private void Subscribe()
+        {
+            var loop = PlayerLoop.GetCurrentPlayerLoop();
+            ref var system = ref loop.Find<T>();
+            system.updateDelegate += Invoke;
+            PlayerLoop.SetPlayerLoop(loop);
+        }
 
-    public void Dispose()
-    {
-        Unsubscribe();
+        private void Unsubscribe()
+        {
+            var loop = PlayerLoop.GetCurrentPlayerLoop();
+            ref var system = ref loop.Find<T>();
+            system.updateDelegate -= Invoke;
+            PlayerLoop.SetPlayerLoop(loop);
+        }
+
+        public void Dispose()
+        {
+            Unsubscribe();
+        }
     }
 }

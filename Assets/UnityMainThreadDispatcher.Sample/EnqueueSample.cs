@@ -2,32 +2,35 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-public class EnqueueSample : MonoBehaviour
+namespace UnityMainThreadDispatcher.Sample
 {
-    private bool _quitting;
-    private Thread _thread;
+    public class EnqueueSample : MonoBehaviour
+    {
+        private bool _quitting;
+        private Thread _thread;
     
-    private void Start()
-    {
-        _thread = new Thread(RunsInAnotherThread);
-        _thread.Start();
-    }
-
-    private void OnDestroy()
-    {
-        _quitting = true;
-    }
-
-    private void RunsInAnotherThread()
-    {
-        while (!_quitting)
+        private void Start()
         {
-            Thread.Sleep(TimeSpan.FromMilliseconds(16));
+            _thread = new Thread(RunsInAnotherThread);
+            _thread.Start();
+        }
 
-            UnityMainThreadDispatcher.Enqueue(() =>
+        private void OnDestroy()
+        {
+            _quitting = true;
+        }
+
+        private void RunsInAnotherThread()
+        {
+            while (!_quitting)
             {
-                transform.position = new Vector2(Mathf.Cos(Time.time), Mathf.Sin(Time.time));
-            });
+                Thread.Sleep(TimeSpan.FromMilliseconds(16));
+
+                Dispatcher.Enqueue(() =>
+                {
+                    transform.position = new Vector2(Mathf.Cos(Time.time), Mathf.Sin(Time.time));
+                });
+            }
         }
     }
 }
