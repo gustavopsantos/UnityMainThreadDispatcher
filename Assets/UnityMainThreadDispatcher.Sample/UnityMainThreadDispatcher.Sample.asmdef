@@ -1,0 +1,16 @@
+{
+    "name": "UnityMainThreadDispatcher.Sample",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7645de096e51b7f48937118fe024b8a6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
