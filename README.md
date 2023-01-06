@@ -5,8 +5,8 @@
 *Requires Unity 2019+*
 
 ### Install via UPM (using Git URL)
-```json
-"com.gustavopsantos.unitymainthreaddispatcher": "https://github.com/gustavopsantos/unitymainthreaddispatcher.git?path=/Assets/UnityMainThreadDispatcher/#1.0.0"
+```url
+https://github.com/gustavopsantos/unitymainthreaddispatcher.git?path=/Assets/UnityMainThreadDispatcher/#1.0.0
 ```
 
 ### Install manually (using .unitypackage)
